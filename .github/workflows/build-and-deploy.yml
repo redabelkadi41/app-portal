@@ -64,7 +64,7 @@ jobs:
           # Elections: coming soon placeholder
           mkdir -p output/elections
           cp apps/elections/coming-soon.html output/elections/index.html
-          cp apps/elections/src/favicon.svg output/elections/favicon.svg
+          cp public/favicon.svg output/elections/favicon.svg
 
       - name: Deploy to app-portal-static
         run: |
