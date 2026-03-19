@@ -31,17 +31,30 @@ jobs:
           # Portal goes to root
           cp -r dist/portal/browser/* output/
 
-          # Each sub-app: copy all files into output/<app>/
-          # The build produces a nested <app>/index.html for the prerendered route,
-          # which we flatten so index.html sits at output/<app>/index.html
-          for app in elections simulator pomodoro palette markdown; do
-            mkdir -p "output/$app"
-            cp -r "dist/$app/browser/"* "output/$app/"
-            # Flatten the double-nested prerendered route
-            if [ -f "output/$app/$app/index.html" ]; then
-              mv "output/$app/$app/index.html" "output/$app/index.html"
-              rmdir "output/$app/$app" 2>/dev/null || true
-            fi
+          # Each sub-app: copy build output into output/<public-path>/
+          # Map build name → public folder (must match each app's <base href>)
+          declare -A APP_MAP=(
+            [elections]=elections
+            [simulator]=simulateur-reports-voix
+            [pomodoro]=pomodoro
+            [palette]=palette
+            [markdown]=markdown
+          )
+          for app in "${!APP_MAP[@]}"; do
+            dest="${APP_MAP[$app]}"
+            mkdir -p "output/$dest"
+            cp -r "dist/$app/browser/"* "output/$dest/"
+            # Flatten the double-nested prerendered route if present
+            for nested in "output/$dest"/*/index.html; do
+              [ -f "$nested" ] || continue
+              dir="$(dirname "$nested")"
+              base="$(basename "$dir")"
+              # Only flatten if the nested dir matches the dest name or the app name
+              if [ "$base" = "$dest" ] || [ "$base" = "$app" ]; then
+                mv "$nested" "output/$dest/index.html"
+                rmdir "$dir" 2>/dev/null || true
+              fi
+            done
           done
 
           # Copy PHP API files (excluding config.php with credentials)
