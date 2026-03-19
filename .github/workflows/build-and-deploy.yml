@@ -21,8 +21,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build all apps
-        run: npm run build
+      - name: Build all apps (except elections — coming soon)
+        run: |
+          ng build portal
+          ng build simulator
+          ng build pomodoro
+          ng build palette
+          ng build markdown
 
       - name: Assemble output
         run: |
@@ -34,7 +39,6 @@ jobs:
           # Each sub-app: copy build output into output/<public-path>/
           # Map build name → public folder (must match each app's <base href>)
           declare -A APP_MAP=(
-            [elections]=elections
             [simulator]=simulateur-reports-voix
             [pomodoro]=pomodoro
             [palette]=palette
@@ -57,10 +61,10 @@ jobs:
             done
           done
 
-          # Copy PHP API files (excluding config.php with credentials)
-          mkdir -p output/elections/api
-          cp -r apps/elections/api/* output/elections/api/
-          rm -f output/elections/api/config.php
+          # Elections: coming soon placeholder
+          mkdir -p output/elections
+          cp apps/elections/coming-soon.html output/elections/index.html
+          cp apps/elections/src/favicon.svg output/elections/favicon.svg
 
       - name: Deploy to app-portal-static
         run: |
