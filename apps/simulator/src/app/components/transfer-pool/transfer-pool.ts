@@ -1,4 +1,4 @@
-import { Component, computed, effect, input, output, viewChildren, ElementRef } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { Round2CandidateInfo, TransferPool as TransferPoolModel } from '../../models/simulator.models';
 
@@ -18,21 +18,6 @@ export class TransferPoolComponent {
 
   readonly sliderChange = output<{ candidateId: number; poolId: string; event: Event }>();
   readonly votesChange = output<{ candidateId: number; poolId: string; percent: number }>();
-
-  private readonly sliderRefs = viewChildren<ElementRef<HTMLInputElement>>('sliderRef');
-
-  constructor() {
-    // Sync range inputs from parent state (handles reset + initial render)
-    effect(() => {
-      const sliders = this.allSliders();
-      const poolId = this.pool().id;
-      for (const ref of this.sliderRefs()) {
-        const cid = Number(ref.nativeElement.dataset['cid']);
-        const val = sliders[cid]?.[poolId] ?? 0;
-        ref.nativeElement.value = String(val);
-      }
-    });
-  }
 
   onSliderInput(candidateId: number, e: Event): void {
     this.sliderChange.emit({ candidateId, poolId: this.pool().id, event: e });

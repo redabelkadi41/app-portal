@@ -32,8 +32,7 @@
     <div class="slider-row">
       <span class="sl-label">{{ r2.name }}</span>
       <input type="range" class="sl-range" min="0" max="100" step="1"
-        #sliderRef
-        [attr.data-cid]="r2.id"
+        [value]="getSliderValue(r2.id)"
         (input)="onSliderInput(r2.id, $event)">
       <span class="sl-pct">{{ getSliderValue(r2.id) | number:'1.0-1' }}%</span>
       <div class="sl-input-wrap">
