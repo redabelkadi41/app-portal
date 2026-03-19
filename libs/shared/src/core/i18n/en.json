@@ -1,0 +1,60 @@
+{
+  "nav": {
+    "title": "Apps Portal",
+    "back": "redabelkadi.fr"
+  },
+  "hero": {
+    "title": "Apps Portal",
+    "subtitle": "Free tools and mini web applications."
+  },
+  "apps": {
+    "open": "Open",
+    "coming_soon": "Coming soon",
+    "elections": {
+      "title": "Elections Tracker",
+      "description": "Track election results in real time with charts and detailed statistics."
+    },
+    "simulator": {
+      "title": "Election Simulator",
+      "description": "Simulate vote transfers between the two rounds of a French municipal election."
+    }
+  },
+  "footer": {
+    "copy": "Reda Belkadi",
+    "main_site": "redabelkadi.fr",
+    "legal": "Legal notice",
+    "about": "About"
+  },
+  "page": {
+    "back_home": "Back to home"
+  },
+  "legal": {
+    "title": "Legal notice",
+    "publisher_title": "Site publisher",
+    "publisher_name": "Reda Belkadi",
+    "publisher_status": "Sole proprietor",
+    "publisher_siret": "SIRET: 88839616500019",
+    "publisher_address": "France",
+    "publisher_email": "Contact:",
+    "hosting_title": "Hosting",
+    "hosting_name": "OVH",
+    "hosting_address": "2 rue Kellermann, 59100 Roubaix, France",
+    "hosting_website": "Website:",
+    "intellectual_title": "Intellectual property",
+    "intellectual_text": "All content on this site (text, images, code) is the exclusive property of Reda Belkadi, unless otherwise stated. Any reproduction, distribution or use without prior written consent is strictly prohibited.",
+    "data_title": "Personal data",
+    "data_text": "This site does not collect any personal data. No registration is required and no contact form is provided. All applications run entirely in your browser.",
+    "cookies_title": "Cookies",
+    "cookies_text": "This site does not use tracking or advertising cookies. Only strictly necessary technical cookies may be used for proper site functionality."
+  },
+  "about": {
+    "title": "About",
+    "intro": "Apps Portal is a collection of free and open-access web tools and mini-applications, designed to be simple, fast and privacy-friendly.",
+    "project_title": "The project",
+    "project_text": "This portal brings together several independent web applications, each designed to meet a specific need. All applications run directly in your browser, without registration or data collection.",
+    "tech_title": "Contribute",
+    "tech_text": "All contributions are welcome on my",
+    "contact_title": "Contact",
+    "contact_text": "For any questions, suggestions or bug reports, you can contact us via the main site redabelkadi.fr."
+  }
+}

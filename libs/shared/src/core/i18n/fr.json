@@ -1,0 +1,60 @@
+{
+  "nav": {
+    "title": "Apps Portal",
+    "back": "redabelkadi.fr"
+  },
+  "hero": {
+    "title": "Applications en vrac",
+    "subtitle": "Outils et mini-applications web, en libre accès."
+  },
+  "apps": {
+    "open": "Ouvrir",
+    "coming_soon": "Bientôt disponible",
+    "elections": {
+      "title": "Suivi Élections",
+      "description": "Suivez les résultats des élections en temps réel avec graphiques et statistiques détaillees."
+    },
+    "simulator": {
+      "title": "Simulateur Électoral",
+      "description": "Simulez les reports de voix entre les deux tours d'une élection municipale, ainsi que la répartition des sièges."
+    }
+  },
+  "footer": {
+    "copy": "Reda Belkadi",
+    "main_site": "redabelkadi.fr",
+    "legal": "Mentions légales",
+    "about": "A propos"
+  },
+  "page": {
+    "back_home": "Retour à l'accueil"
+  },
+  "legal": {
+    "title": "Mentions légales",
+    "publisher_title": "Éditeur du site",
+    "publisher_name": "Reda Belkadi",
+    "publisher_status": "Entrepreneur individuel",
+    "publisher_siret": "SIRET : 88839616500019",
+    "publisher_address": "France",
+    "publisher_email": "Contact :",
+    "hosting_title": "Hébergement",
+    "hosting_name": "OVH",
+    "hosting_address": "2 rue Kellermann, 59100 Roubaix, France",
+    "hosting_website": "Site web :",
+    "intellectual_title": "Propriété intellectuelle",
+    "intellectual_text": "L'ensemble des contenus présents sur ce site (textes, images, code) est la propriété exclusive de Reda Belkadi, sauf mention contraire. Toute reproduction, diffusion ou utilisation sans accord préalable écrit est strictement interdite.",
+    "data_title": "Données personnelles",
+    "data_text": "Ce site ne collecte aucune donnée personnelle. Aucune inscription n'est requise et aucun formulaire de contact n'est proposé. Les applications fonctionnent intégralement dans votre navigateur.",
+    "cookies_title": "Cookies",
+    "cookies_text": "Ce site n'utilise pas de cookies de suivi ou publicitaires. Seuls des cookies techniques strictement nécessaires au bon fonctionnement du site sont susceptibles d'être utilisés."
+  },
+  "about": {
+    "title": "A propos",
+    "intro": "Ce site héberge une collection d'outils et de mini-applications web en libre accès, développés sur mon temps libre afin de répondre à des besoins particuliers, pour me former ou simplement pour m'amuser.",
+    "project_title": "Technologies",
+    "project_text": "Ce portail et ses applications sont développés avec Angular. Le code source est organisé en monorepo avec des bibliothèques partagées.",
+    "tech_title": "Contribuer",
+    "tech_text": "Toute contribution est la bienvenue sur mon",
+    "contact_title": "Contact",
+    "contact_text": "Vous avez repéré un bug, vous avez une idée ? Contactez-moi : contact@redabelkadi.fr"
+  }
+}

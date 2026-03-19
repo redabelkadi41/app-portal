@@ -1,0 +1,11 @@
+<div class="phase-stepper">
+  <div class="step" [class.active]="currentPhase() === 1" [class.done]="currentPhase() === 2">
+    <span class="step-num">1</span>
+    <span class="step-text">Données du 1er tour</span>
+  </div>
+  <div class="step-line" [class.active]="currentPhase() === 2"></div>
+  <div class="step" [class.active]="currentPhase() === 2">
+    <span class="step-num">2</span>
+    <span class="step-text">Simulation du 2nd tour</span>
+  </div>
+</div>

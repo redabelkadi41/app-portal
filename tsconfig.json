@@ -1,0 +1,38 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve",
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@libs/shared": ["libs/shared/src/index.ts"]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": [],
+  "references": [
+    { "path": "./apps/portal/tsconfig.app.json" },
+    { "path": "./apps/pomodoro/tsconfig.app.json" },
+    { "path": "./apps/palette/tsconfig.app.json" },
+    { "path": "./apps/markdown/tsconfig.app.json" },
+    { "path": "./apps/elections/tsconfig.app.json" },
+    { "path": "./apps/simulator/tsconfig.app.json" },
+    { "path": "./libs/shared/tsconfig.lib.json" },
+    { "path": "./tsconfig.spec.json" }
+  ]
+}

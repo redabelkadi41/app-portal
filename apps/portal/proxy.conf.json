@@ -1,0 +1,22 @@
+{
+  "/simulateur-reports-voix": {
+    "target": "http://localhost:4205",
+    "secure": false
+  },
+  "/elections": {
+    "target": "http://localhost:4201",
+    "secure": false
+  },
+  "/pomodoro": {
+    "target": "http://localhost:4202",
+    "secure": false
+  },
+  "/palette": {
+    "target": "http://localhost:4203",
+    "secure": false
+  },
+  "/markdown": {
+    "target": "http://localhost:4204",
+    "secure": false
+  }
+}

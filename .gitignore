@@ -1,0 +1,28 @@
+# Dependencies
+/node_modules
+
+# Build
+/dist
+/out-tsc
+
+# IDE
+/.idea
+/.vscode
+*.swp
+*.swo
+
+# System
+.DS_Store
+Thumbs.db
+
+# Angular cache
+/.angular
+
+# PHP API config (contains DB credentials)
+apps/elections/api/config.php
+
+# fichiers Claude
+.claude/
+claude/
+claude_logs/
+*.claude.json

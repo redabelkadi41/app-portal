@@ -1,0 +1,32 @@
+<div class="res-card" [class.winner]="isWinner()">
+  <div class="res-head">
+    <h3>{{ candidate().name }}</h3>
+    @if (isWinner()) {
+      <span class="winner-tag">En tête</span>
+    }
+  </div>
+  @if (candidate().mergedFrom.length > 0) {
+    <p class="merged-info">+ fusion : {{ candidate().mergedFrom.join(', ') }}</p>
+  }
+  <div class="res-scores">
+    <div class="sc">
+      <span class="sc-lbl">T1</span>
+      <span class="sc-val">{{ candidate().ownVotes | number }}</span>
+    </div>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <div class="sc">
+      <span class="sc-lbl">T2</span>
+      <span class="sc-val sc-projected">{{ projectedVotes() | number }}</span>
+    </div>
+  </div>
+  <div class="res-bar">
+    <div class="res-bar-fill" [style.width.%]="projectedPercent()"></div>
+  </div>
+  <span class="res-pct">{{ projectedPercent() | number:'1.2-2' }}% des exprimés</span>
+  @if (showSeats()) {
+    <div class="res-seats">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      {{ seats() }} siège{{ seats() > 1 ? 's' : '' }}
+    </div>
+  }
+</div>

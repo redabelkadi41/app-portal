@@ -1,0 +1,63 @@
+:host {
+  display: block;
+  --fr-blue: #002395;
+}
+
+.phase-stepper {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: all var(--transition-base);
+}
+.step.active {
+  background: var(--fr-blue);
+  border-color: var(--fr-blue);
+  color: #fff;
+}
+.step.done {
+  background: var(--success-bg);
+  border-color: var(--success-border);
+  color: var(--success);
+}
+.step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-xs);
+  font-weight: 700;
+  background: var(--surface);
+  color: var(--text-secondary);
+}
+.step.active .step-num { background: rgba(255,255,255,0.2); color: #fff; }
+.step.done .step-num { background: var(--success); color: #fff; }
+.step-text { font-size: var(--font-sm); font-weight: 500; }
+.step-line {
+  width: 40px;
+  height: 2px;
+  background: var(--border);
+  transition: background var(--transition-base);
+}
+.step-line.active { background: var(--success); }
+
+@media (max-width: 768px) {
+  .phase-stepper { gap: 8px; }
+  .step { padding: 6px 10px; }
+  .step-text { font-size: var(--font-xs); }
+  .step-line { width: 20px; }
+}

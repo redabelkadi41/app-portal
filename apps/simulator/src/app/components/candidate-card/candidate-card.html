@@ -1,0 +1,70 @@
+<div class="cand-card">
+  <div class="cand-row">
+    <span class="cand-num">{{ index() + 1 }}</span>
+    <input class="cand-input" type="text" placeholder="Saisir le nom du candidat"
+      [value]="candidate().name"
+      (input)="onNameInput($event)">
+    <div class="cand-votes-wrap">
+      <input class="cand-input cand-votes-input" type="number" min="0" placeholder="Voix"
+        [value]="candidate().votes || ''"
+        (input)="votesChange.emit({ id: candidate().id, event: $event })">
+      @if (exprimes() > 0 && candidate().votes > 0) {
+        <span class="cand-pct">{{ candidatePercent() | number:'1.2-2' }}%</span>
+      }
+    </div>
+    <button class="btn-icon btn-remove" (click)="remove.emit(candidate().id)" aria-label="Supprimer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  @if (!hasFirstRoundWinner()) {
+    @if (!(exprimes() > 0 && candidatePercent() < 5)) {
+      <div class="cand-options">
+        <div class="opt-group">
+          <span class="opt-label">Présent au 2nd tour :</span>
+          <div class="radio-grp">
+            <label class="radio-item" [class.sel]="candidate().willRunInRound2 === true">
+              <input type="radio" [name]="'r2-' + candidate().id"
+                [checked]="candidate().willRunInRound2 === true"
+                (change)="willRunChange.emit({ id: candidate().id, value: true })">
+              Oui
+            </label>
+            <label class="radio-item" [class.sel]="candidate().willRunInRound2 === false">
+              <input type="radio" [name]="'r2-' + candidate().id"
+                [checked]="candidate().willRunInRound2 === false"
+                (change)="willRunChange.emit({ id: candidate().id, value: false })">
+              Non
+            </label>
+          </div>
+        </div>
+
+        @if (candidate().willRunInRound2 === false && candidatePercent() >= 5) {
+          <div class="opt-group merge-grp">
+            <label class="chk-label">
+              <input type="checkbox"
+                [checked]="candidate().willMerge"
+                (change)="mergeToggle.emit(candidate().id)">
+              Fusionner avec une autre liste
+            </label>
+            @if (candidate().willMerge) {
+              <select class="merge-sel" (change)="mergeTargetChange.emit({ id: candidate().id, event: $event })">
+                <option value="">-- Choisir la liste --</option>
+                @for (t of mergeTargets(); track t.id) {
+                  <option [value]="t.id" [selected]="candidate().mergeTargetId === t.id">
+                    {{ t.name }} ({{ targetPercent(t) | number:'1.2-2' }}%)
+                  </option>
+                }
+              </select>
+            }
+          </div>
+        }
+      </div>
+
+      @if (candidate().willRunInRound2 === true && exprimes() > 0 && candidatePercent() < 10) {
+        <div class="cand-warn">
+          Score &lt; 10% des exprimés — maintien normalement impossible
+        </div>
+      }
+    }
+  }
+</div>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Simulateur Élections municipales - Apps Portal</title>
+  <base href="/simulateur-reports-voix/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Simulateur de reports de voix entre les deux tours d'une élection municipale.">
+  <meta name="theme-color" content="#0a0a0f">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+</head>
+<body>
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <app-root></app-root>
+</body>
+</html>

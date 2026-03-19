@@ -1,0 +1,45 @@
+:host {
+  display: block;
+  --fr-blue-l: #3366cc;
+  --fr-red: #ED2939;
+  --fr-red-l: #ff4d5e;
+}
+
+.validation-box { margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
+.v-warn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(237,41,57,0.08);
+  border: 1px solid rgba(237,41,57,0.2);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-sm);
+  color: var(--fr-red-l);
+}
+.v-warn svg { flex-shrink: 0; color: var(--fr-red); }
+.v-ok {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-sm);
+  color: var(--success);
+}
+.v-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(0,35,149,0.08);
+  border: 1px solid rgba(0,35,149,0.25);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-sm);
+  font-weight: 500;
+  color: var(--fr-blue-l);
+}
+.v-block svg { flex-shrink: 0; color: var(--fr-blue-l); }
+.v-ok svg { flex-shrink: 0; }

@@ -1,0 +1,47 @@
+<div class="pool-card" [class.pool-r2]="pool().type === 'r2'" [class.pool-merged]="pool().type === 'merged'">
+  <div class="pool-head">
+    <div class="pool-info">
+      <h3>
+        @if (pool().type === 'abstention') {
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+        } @else {
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        }
+        {{ pool().label }}
+        @if (pool().type === 'r2') {
+          <span class="pool-badge pool-badge-r2">T2</span>
+        } @else if (pool().type === 'merged') {
+          <span class="pool-badge pool-badge-merged">Fusion</span>
+        } @else if (pool().type === 'eliminated') {
+          <span class="pool-badge pool-badge-elim">Elimine</span>
+        }
+      </h3>
+      <span class="pool-votes">{{ pool().votes | number }} voix</span>
+      @if (pool().type === 'merged' && pool().mergeTarget) {
+        <span class="pool-merge-target">Fusionne avec {{ pool().mergeTarget }}</span>
+      }
+    </div>
+    <div class="pool-right">
+      <span class="pool-rem" [class.over]="remainingPercent() < 0" [class.full]="remainingPercent() === 0">
+        {{ remainingPercent() | number:'1.0-0' }}% non attribués
+      </span>
+    </div>
+  </div>
+
+  @for (r2 of round2Candidates(); track r2.id) {
+    <div class="slider-row">
+      <span class="sl-label">{{ r2.name }}</span>
+      <input type="range" class="sl-range" min="0" max="100" step="1"
+        #sliderRef
+        [attr.data-cid]="r2.id"
+        (input)="onSliderInput(r2.id, $event)">
+      <span class="sl-pct">{{ getSliderValue(r2.id) | number:'1.0-1' }}%</span>
+      <div class="sl-input-wrap">
+        <input type="number" class="sl-input" min="0" [max]="pool().votes" step="1"
+          [value]="getCapturedVotes(r2.id)"
+          (input)="onVotesInput(r2.id, $event)">
+        <span class="sl-unit">voix</span>
+      </div>
+    </div>
+  }
+</div>

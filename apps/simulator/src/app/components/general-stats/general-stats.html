@@ -1,0 +1,44 @@
+<section class="card">
+  <h2 class="card-title">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 4-6"/></svg>
+    Données Générales
+  </h2>
+  <div class="stats-grid">
+    <div class="field">
+      <label for="inscrits">Inscrits</label>
+      <input id="inscrits" type="number" min="0"
+        [value]="inscrits()"
+        (input)="inscritChange.emit(toInt($event))">
+    </div>
+    <div class="field">
+      <label for="votants">Votants</label>
+      <input id="votants" type="number" min="0"
+        [value]="votants()"
+        (input)="votantChange.emit(toInt($event))">
+    </div>
+    <div class="field">
+      <label for="nuls">Bulletins nuls</label>
+      <input id="nuls" type="number" min="0"
+        [value]="nuls()"
+        (input)="nulChange.emit(toInt($event))">
+    </div>
+    <div class="field">
+      <label for="blancs">Bulletins blancs</label>
+      <input id="blancs" type="number" min="0"
+        [value]="blancs()"
+        (input)="blancChange.emit(toInt($event))">
+    </div>
+    <div class="field field-readonly">
+      <label>Bulletins exprimés</label>
+      <div class="computed-val" [class.negative]="exprimes() < 0">
+        {{ exprimes() | number }}
+      </div>
+    </div>
+  </div>
+  @if (inscrits() > 0 && votants() > 0) {
+    <p class="info-line">
+      Participation : {{ participationRate() | number:'1.2-2' }}%
+      · Abstention : {{ abstentionPool() | number }} electeurs
+    </p>
+  }
+</section>

@@ -1,0 +1,34 @@
+<div class="summary-table-wrap">
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>Candidat</th>
+        <th>Voix T1</th>
+        <th>% T1</th>
+        <th>Voix T2</th>
+        <th>% T2</th>
+        <th>Evolution</th>
+        @if (showSeats()) {
+          <th>Sièges</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows(); track row.name) {
+        <tr [class.winner-row]="row.isWinner">
+          <td>{{ row.name }}</td>
+          <td>{{ row.r1Votes | number }}</td>
+          <td>{{ row.r1Percent | number:'1.2-2' }}%</td>
+          <td>{{ row.r2Votes | number }}</td>
+          <td>{{ row.r2Percent | number:'1.2-2' }}%</td>
+          <td class="evol" [class.pos]="row.evolution > 0" [class.neg]="row.evolution < 0">
+            {{ row.evolution > 0 ? '+' : '' }}{{ row.evolution | number }}
+          </td>
+          @if (showSeats()) {
+            <td class="seats-cell">{{ row.seats }}</td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

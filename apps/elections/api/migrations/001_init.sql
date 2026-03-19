@@ -1,0 +1,34 @@
+CREATE DATABASE IF NOT EXISTS elections
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+USE elections;
+
+CREATE TABLE candidates (
+    id          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name        VARCHAR(255) NOT NULL DEFAULT '',
+    sort_order  SMALLINT UNSIGNED NOT NULL DEFAULT 0,
+    created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_sort_order (sort_order)
+) ENGINE=InnoDB;
+
+CREATE TABLE bureau_special_votes (
+    bureau_id   VARCHAR(50) NOT NULL,
+    blancs      INT UNSIGNED NOT NULL DEFAULT 0,
+    nuls        INT UNSIGNED NOT NULL DEFAULT 0,
+    version     INT UNSIGNED NOT NULL DEFAULT 1,
+    updated_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (bureau_id)
+) ENGINE=InnoDB;
+
+CREATE TABLE votes (
+    bureau_id    VARCHAR(50) NOT NULL,
+    candidate_id INT UNSIGNED NOT NULL,
+    vote_count   INT UNSIGNED NOT NULL DEFAULT 0,
+    version      INT UNSIGNED NOT NULL DEFAULT 1,
+    updated_at   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (bureau_id, candidate_id),
+    CONSTRAINT fk_votes_candidate FOREIGN KEY (candidate_id)
+        REFERENCES candidates(id) ON DELETE CASCADE
+) ENGINE=InnoDB;

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Color Palette - Apps Portal</title>
+  <base href="/palette/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Generateur de palettes de couleurs harmonieuses.">
+  <meta name="theme-color" content="#0a0a0f">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <app-root></app-root>
+</body>
+</html>

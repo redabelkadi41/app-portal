@@ -1,0 +1,60 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build all apps
+        run: npm run build
+
+      - name: Assemble output
+        run: |
+          mkdir -p output
+
+          # Portal goes to root
+          cp -r dist/portal/browser/* output/
+
+          # Each sub-app: copy all files into output/<app>/
+          # The build produces a nested <app>/index.html for the prerendered route,
+          # which we flatten so index.html sits at output/<app>/index.html
+          for app in elections simulator pomodoro palette markdown; do
+            mkdir -p "output/$app"
+            cp -r "dist/$app/browser/"* "output/$app/"
+            # Flatten the double-nested prerendered route
+            if [ -f "output/$app/$app/index.html" ]; then
+              mv "output/$app/$app/index.html" "output/$app/index.html"
+              rmdir "output/$app/$app" 2>/dev/null || true
+            fi
+          done
+
+          # Copy PHP API files (excluding config.php with credentials)
+          mkdir -p output/elections/api
+          cp -r apps/elections/api/* output/elections/api/
+          rm -f output/elections/api/config.php
+
+      - name: Deploy to app-portal-static
+        run: |
+          cd output
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Deploy from ${{ github.sha }}"
+          git push --force https://x-access-token:${{ secrets.DEPLOY_TOKEN }}@github.com/redabelkadi41/app-portal-static.git HEAD:main
