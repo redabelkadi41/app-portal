@@ -23,11 +23,11 @@ jobs:
 
       - name: Build all apps (except elections — coming soon)
         run: |
-          ng build portal
-          ng build simulator
-          ng build pomodoro
-          ng build palette
-          ng build markdown
+          npx ng build portal
+          npx ng build simulator
+          npx ng build pomodoro
+          npx ng build palette
+          npx ng build markdown
 
       - name: Assemble output
         run: |
